@@ -8,7 +8,7 @@ from src.errors import HttpRequestError
 
 class SwApiConsumer:
     """
-    Class to consume star wors api with http requests
+    Class to consume star wars api with http requests
     """
 
     def __init__(self) -> None:

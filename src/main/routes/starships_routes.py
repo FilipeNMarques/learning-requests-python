@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Request as RequestFastApi
 
+from src.validators.get_starships_in_page_validator import get_starships_validator
+
 
 starships_routes: APIRouter = APIRouter()
 
@@ -11,6 +13,6 @@ async def get_starships_in_page(request: RequestFastApi):
     :param request:
     :return:
     """
-    print(request.query_params)
+    get_starships_validator(request)
 
     return {"message": "Hello World"}

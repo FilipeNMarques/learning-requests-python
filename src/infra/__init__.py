@@ -1,1 +1,1 @@
-from .swap_api_consumer import SwApiConsumer
+from .sw_api_consumer import SwApiConsumer

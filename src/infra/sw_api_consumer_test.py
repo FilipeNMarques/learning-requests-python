@@ -1,5 +1,5 @@
 from src.errors import HttpRequestError
-from src.infra.swap_api_consumer import SwApiConsumer
+from src.infra.sw_api_consumer import SwApiConsumer
 
 
 def test_get_starships(requests_mock):

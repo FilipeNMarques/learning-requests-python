@@ -1,12 +1,13 @@
-from typing import Type
+from typing import Dict, Tuple, Type
 from collections import namedtuple
 import requests
 from requests import Request
 
 from src.errors import HttpRequestError
+from src.data.interfaces import SwApiConsumerInterface
 
 
-class SwApiConsumer:
+class SwApiConsumer(SwApiConsumerInterface):
     """
     Class to consume star wars api with http requests
     """
@@ -16,7 +17,7 @@ class SwApiConsumer:
             "GET_Starships", ["status_code", "request", "response"]
         )
 
-    def get_starships(self, page: int) -> any:
+    def get_starships(self, page: int) -> Tuple[int, Type[Request], Dict]:
         """
         Request starships with pagination
         :param page: int

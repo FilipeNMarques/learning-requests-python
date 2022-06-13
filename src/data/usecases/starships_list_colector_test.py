@@ -13,3 +13,5 @@ def test_list():
     assert isinstance(response, list)
     assert "id" in response[0]
     assert "MGLT" in response[-1]
+
+    print(startships_list_colector.list(page).__doc__)

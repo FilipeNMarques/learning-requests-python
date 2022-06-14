@@ -1,4 +1,4 @@
-from typing import Type, Dict
+from typing import Dict
 
 from src.data.usecases.starships_list_colector import StarshipsListCollectorInterface
 
@@ -8,10 +8,10 @@ class StarShipListCollectorController:
     Controller to list starships
     """
 
-    def __int__(self, starship_list_collector: Type[StarshipsListCollectorInterface]):
+    def __init__(self, starship_list_collector: StarshipsListCollectorInterface):
         self.__use_case = starship_list_collector
 
-    def handle(self, http_request: Dict) -> Dict:
+    def handler(self, http_request: Dict) -> Dict:
         """
         Handler to list collector
         """

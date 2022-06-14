@@ -19,6 +19,8 @@ async def get_starships_in_page(request: RequestFastApi):
 
     controller = get_starships_in_paginagion()
 
-    response = await request_adapter(request, controller.handle())
+    response = await request_adapter(request, controller.handler)
 
-    return JSONResponse(status_code=response["status_code"], content=response["data"])
+    return JSONResponse(
+        status_code=response["status_code"], content={"data": response["data"]}
+    )

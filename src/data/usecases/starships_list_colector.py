@@ -13,6 +13,7 @@ class StarshipsListCollector(StarshipsListCollectorInterface):
     def list(self, page: int) -> List[Dict]:
         """
         List come starships information
+        :rtype: object
         :param page: int - number of the page
         :return: List with all starships information
         """

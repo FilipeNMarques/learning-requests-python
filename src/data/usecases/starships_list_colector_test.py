@@ -2,7 +2,7 @@ from .starships_list_colector import StarshipsListCollector
 from src.infra.test.sw_api_consumer import SwApiConsumerSpy
 
 
-def test_list():
+def test_list() -> None:
     api_consumer = SwApiConsumerSpy()
     startships_list_colector = StarshipsListCollector(api_consumer)
 
@@ -14,4 +14,4 @@ def test_list():
     assert "id" in response[0]
     assert "MGLT" in response[-1]
 
-    print(startships_list_colector.list(page).__doc__)
+    help(startships_list_colector.list(page))

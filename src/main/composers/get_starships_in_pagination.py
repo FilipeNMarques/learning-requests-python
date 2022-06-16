@@ -10,13 +10,6 @@ def get_starships_in_paginagion():
 
     _extended_summary_
 
-    Parameters
-    ----------
-    v1 : int
-        _description_
-    v1 : str
-        _description_
-
     Returns
     -------
     _type_

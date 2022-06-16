@@ -1,5 +1,4 @@
 from src.infra.test.sw_api_consumer import SwApiConsumerSpy
-
 from .starships_list_colector import StarshipsListCollector
 
 
@@ -19,5 +18,3 @@ def test_list() -> None:
     assert isinstance(response, list)
     assert "id" in response[0]
     assert "MGLT" in response[-1]
-
-    help(startships_list_colector.list(page))

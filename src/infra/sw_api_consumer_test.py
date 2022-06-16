@@ -75,26 +75,3 @@ def test_get_starship_information(requests_mock):
     assert starship_information.status_code == 200
 
     assert "MGLT" in starship_information.response
-
-
-def test_get_starship_information_error(requests_mock):
-    """test_get_starship_information_error _summary_
-
-    _extended_summary_
-    """
-
-    starship_id = 1
-    sw_api_consumer = SwApiConsumer()
-
-    requests_mock.get(
-        f"https://swapi.dev/api/starships/{starship_id}",
-        status_code=404,
-        json={"detail": "Detail of error... ;/"},
-    )
-
-    try:
-        sw_api_consumer.get_starship_information(starship_id)
-        assert True is False
-    except HttpRequestError as err:
-        assert err.message is not None
-        assert err.status_code is not None

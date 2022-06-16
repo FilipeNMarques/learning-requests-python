@@ -41,3 +41,60 @@ def test_get_starships_error(requests_mock):
         assert error.message is not None
         assert error.status_code is not None
         print(error)
+
+
+def test_get_starship_information(requests_mock):
+    """
+    test_get_starship_information _summary_
+
+    _extended_summary_
+    """
+
+    starship_id = 12
+    sw_api_consumer = SwApiConsumer()
+
+    requests_mock.get(
+        f"https://swapi.dev/api/starships/{starship_id}",
+        status_code=200,
+        json={
+            "model": "T-65 X-wing",
+            "manufacturer": "Incom Corporation",
+            "max_atmosphering_speed": "1050",
+            "hyperdrive_rating": "1.0",
+            "MGLT": "100",
+        },
+    )
+
+    starship_information = sw_api_consumer.get_starship_information(starship_id)
+
+    assert starship_information.request.method == "GET"
+    assert (
+        starship_information.request.url
+        == f"https://swapi.dev/api/starships/{starship_id}"
+    )
+    assert starship_information.status_code == 200
+
+    assert "MGLT" in starship_information.response
+
+
+def test_get_starship_information_error(requests_mock):
+    """test_get_starship_information_error _summary_
+
+    _extended_summary_
+    """
+
+    starship_id = 1
+    sw_api_consumer = SwApiConsumer()
+
+    requests_mock.get(
+        f"https://swapi.dev/api/starships/{starship_id}",
+        status_code=404,
+        json={"detail": "Detail of error... ;/"},
+    )
+
+    try:
+        sw_api_consumer.get_starship_information(starship_id)
+        assert True is False
+    except HttpRequestError as err:
+        assert err.message is not None
+        assert err.status_code is not None

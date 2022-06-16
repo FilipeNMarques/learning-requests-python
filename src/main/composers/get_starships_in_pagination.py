@@ -5,7 +5,7 @@ from src.presenters.controllers.starship_list_collector_controller import (
 )
 
 
-def get_starships_in_paginagion(v1: int, v2: str):
+def get_starships_in_paginagion():
     """get_starships_in_paginagion _summary_
 
     _extended_summary_

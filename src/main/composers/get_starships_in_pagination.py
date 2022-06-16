@@ -5,8 +5,23 @@ from src.presenters.controllers.starship_list_collector_controller import (
 )
 
 
-def get_starships_in_paginagion():
-    """Get starships composer"""
+def get_starships_in_paginagion(v1: int, v2: str):
+    """get_starships_in_paginagion _summary_
+
+    _extended_summary_
+
+    Parameters
+    ----------
+    v1 : int
+        _description_
+    v1 : str
+        _description_
+
+    Returns
+    -------
+    _type_
+        _description_
+    """
 
     infra = SwApiConsumer()
     usecase = StarshipsListCollector(infra)

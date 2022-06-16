@@ -1,1 +1,1 @@
-from src.errors.httprequesterror import HttpRequestError
+from .httprequesterror import HttpRequestError

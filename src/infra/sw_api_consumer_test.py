@@ -1,4 +1,4 @@
-from src.errors import HttpRequestError
+from src.errors.httprequesterror import HttpRequestError
 from src.infra.sw_api_consumer import SwApiConsumer
 
 

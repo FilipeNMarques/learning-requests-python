@@ -1,8 +1,14 @@
-from .starships_list_colector import StarshipsListCollector
 from src.infra.test.sw_api_consumer import SwApiConsumerSpy
+
+from .starships_list_colector import StarshipsListCollector
 
 
 def test_list() -> None:
+    """
+    test_list _summary_
+
+    _extended_summary_
+    """
     api_consumer = SwApiConsumerSpy()
     startships_list_colector = StarshipsListCollector(api_consumer)
 

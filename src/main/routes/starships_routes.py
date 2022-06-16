@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 
 from src.validators.get_starships_in_page_validator import get_starships_validator
 from src.main.adapters.request_adapter import request_adapter
-from src.main.composers import get_starships_in_paginagion
+from src.main.composers.get_starships_in_pagination import get_starships_in_paginagion
 
 starships_routes: APIRouter = APIRouter()
 
@@ -15,11 +15,14 @@ async def get_starships_in_page(request: RequestFastApi):
     :param request:
     :return:
     """
-    get_starships_validator(request)
 
     controller = get_starships_in_paginagion()
 
-    response = await request_adapter(request, controller.handler)
+    try:
+        get_starships_validator(request)
+        response = await request_adapter(request, controller.handler)
+    except Exception as error:
+        print(error)
 
     return JSONResponse(
         status_code=response["status_code"], content={"data": response["data"]}

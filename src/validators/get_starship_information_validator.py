@@ -1,5 +1,7 @@
 from cerberus import Validator
 
+from src.errors import HttpUnprecessableEntitity
+
 
 async def get_starship_information_validator(request: any):
     """get_starship_information_validator _summary_
@@ -29,4 +31,4 @@ async def get_starship_information_validator(request: any):
     response = body_validator.validate(body)
 
     if response is False:
-        raise Exception(body_validator.errors)
+        raise HttpUnprecessableEntitity(body_validator.errors)

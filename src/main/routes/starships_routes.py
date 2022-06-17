@@ -1,12 +1,11 @@
 from fastapi import APIRouter, Request as RequestFastApi
 from fastapi.responses import JSONResponse
 
-from src.main.composers.get_starship_information_composer import (
-    get_starship_information_composer,
-)
-from src.validators.get_starships_in_page_validator import get_starships_validator
-from src.main.adapters.request_adapter import request_adapter
-from src.main.composers.get_starships_in_pagination import get_starships_in_paginagion
+from src.main.adapters import request_adapter
+from src.validators import get_starships_validator
+from src.main.composers import get_starship_information_composer
+from src.main.composers import get_starships_in_paginagion
+
 
 starships_routes: APIRouter = APIRouter()
 

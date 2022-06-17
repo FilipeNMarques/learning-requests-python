@@ -2,7 +2,10 @@ from fastapi import APIRouter, Request as RequestFastApi
 from fastapi.responses import JSONResponse
 
 from src.main.adapters import request_adapter
+
 from src.validators import get_starships_validator
+from src.validators import get_starship_information_validator
+
 from src.main.composers import get_starship_information_composer
 from src.main.composers import get_starships_in_paginagion
 
@@ -48,12 +51,10 @@ async def get_starship_information(request: RequestFastApi):
         _description_
     """
 
+    await get_starship_information_validator(request)
     controller = get_starship_information_composer()
 
-    try:
-        response = await request_adapter(request, controller.handler)
-    except Exception as err:
-        print(err)
+    response = await request_adapter(request, controller.handler)
 
     return JSONResponse(
         status_code=response["status_code"], content={"data": response["data"]}

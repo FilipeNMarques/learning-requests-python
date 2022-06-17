@@ -16,9 +16,6 @@ async def request_adapter(request: RequestFastApi, callback: Callable):
 
     http_request = {"query_params": request.query_params, "body": request_body}
 
-    try:
-        http_response = callback(http_request)
+    http_response = callback(http_request)
 
-        return http_response
-    except:
-        print("Unknow error has occurred")
+    return http_response

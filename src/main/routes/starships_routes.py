@@ -9,6 +9,7 @@ from src.validators import get_starship_information_validator
 from src.main.composers import get_starship_information_composer
 from src.main.composers import get_starships_in_paginagion
 
+from src.presenters.errors import handle_error
 
 starships_routes: APIRouter = APIRouter()
 
@@ -21,17 +22,16 @@ async def get_starships_in_page(request: RequestFastApi):
     :return:
     """
 
+    response = None
     controller = get_starships_in_paginagion()
 
     try:
-        get_starships_validator(request)
+        await get_starships_validator(request)
         response = await request_adapter(request, controller.handler)
     except Exception as error:
-        print(error)
+        response = handle_error(error)
 
-    return JSONResponse(
-        status_code=response["status_code"], content={"data": response["data"]}
-    )
+    return JSONResponse(status_code=response["status_code"], content=response["data"])
 
 
 @starships_routes.post("/api/starship/information")
@@ -51,11 +51,13 @@ async def get_starship_information(request: RequestFastApi):
         _description_
     """
 
-    await get_starship_information_validator(request)
+    response = None
     controller = get_starship_information_composer()
 
-    response = await request_adapter(request, controller.handler)
+    try:
+        await get_starship_information_validator(request)
+        response = await request_adapter(request, controller.handler)
+    except Exception as error:
+        response = handle_error(error)
 
-    return JSONResponse(
-        status_code=response["status_code"], content={"data": response["data"]}
-    )
+    return JSONResponse(status_code=response["status_code"], content=response["data"])

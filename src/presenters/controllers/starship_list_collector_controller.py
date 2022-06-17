@@ -1,9 +1,10 @@
 from typing import Dict
 
 from src.data.usecases.starships_list_colector import StarshipsListCollectorInterface
+from src.presenters.interface.controllers import ControllersInterface
 
 
-class StarShipListCollectorController:
+class StarShipListCollectorController(ControllersInterface):
     """
     Controller to list starships
     """
